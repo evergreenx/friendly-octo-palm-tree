@@ -27,7 +27,7 @@ export default function Homepage() {
           const data = snapshot.val();
           if (data !== null) {
             Object.values(data).map((todo) => {
-              return setTodos((oldArray) => [...oldArray, todo]);
+              setTodos((oldArray) => [...oldArray, todo]);
             });
           }
         });
@@ -35,7 +35,7 @@ export default function Homepage() {
         navigate("/");
       }
     });
-  }, [navigate]);
+  }, []);
 
   const handleSignOut = () => {
     signOut(auth)

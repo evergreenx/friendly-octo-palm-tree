@@ -27,7 +27,8 @@ export default function Homepage() {
           const data = snapshot.val();
           if (data !== null) {
             Object.values(data).map((todo) => {
-              return setTodos((oldArray) => [...oldArray, todo]);
+
+         return     setTodos((oldArray) => [...oldArray, todo]);
             });
           }
         });

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {
   signInWithEmailAndPassword,
-  onAuthStateChanged,
+  // onAuthStateChanged,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../firebase.js";
 import { useNavigate } from "react-router-dom";
 import "./welcome.css";
 import TodoSVG from "../assets/todo-svg.svg";
-import { getAuth } from "firebase/auth";
+// import { getAuth } from "firebase/auth";
 
 export default function Welcome() {
   const [email, setEmail] = useState("");
@@ -25,16 +25,12 @@ export default function Welcome() {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
+      console.log(auth?.currentUser);
 
-  console.log(auth?.currentUser);
-
-  console.log(auth?.currentUser);
-   
+      console.log(auth?.currentUser);
     });
 
-
-  console.log(auth.currentUser);
-
+    console.log(auth.currentUser);
   }, []);
 
   const handleEmailChange = (e) => {
@@ -76,10 +72,9 @@ export default function Welcome() {
 
   // const auth = getAuth();
 
-
   return (
     <div className="welcome">
-      <img src={TodoSVG} className="todo-svg" />
+      <img src={TodoSVG} className="todo-svg" alt={"test"} />
       <h1>Todo-List</h1>
       <div className="login-register-container">
         {isRegistering ? (

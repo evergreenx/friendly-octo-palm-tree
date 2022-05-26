@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase.js";
 import { useNavigate } from "react-router-dom";
 import { uid } from "uid";
@@ -8,8 +8,8 @@ import "./homepage.css";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import LogoutIcon from "@mui/icons-material/Logout";
-import CheckIcon from "@mui/icons-material/Check";
+import LogoutIcon from '@mui/icons-material/Logout';
+import CheckIcon from '@mui/icons-material/Check';
 
 export default function Homepage() {
   const [todo, setTodo] = useState("");
@@ -27,7 +27,7 @@ export default function Homepage() {
           const data = snapshot.val();
           if (data !== null) {
             Object.values(data).map((todo) => {
-              return setTodos((oldArray) => [...oldArray, todo]);
+              setTodos((oldArray) => [...oldArray, todo]);
             });
           }
         });
@@ -35,7 +35,7 @@ export default function Homepage() {
         navigate("/");
       }
     });
-  }, [navigate]);
+  }, []);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -52,7 +52,7 @@ export default function Homepage() {
     const uidd = uid();
     set(ref(db, `/${auth.currentUser.uid}/${uidd}`), {
       todo: todo,
-      uidd: uidd,
+      uidd: uidd
     });
 
     setTodo("");
@@ -68,7 +68,7 @@ export default function Homepage() {
   const handleEditConfirm = () => {
     update(ref(db, `/${auth.currentUser.uid}/${tempUidd}`), {
       todo: todo,
-      tempUidd: tempUidd,
+      tempUidd: tempUidd
     });
 
     setTodo("");
@@ -108,14 +108,14 @@ export default function Homepage() {
 
       {isEdit ? (
         <div>
-          <CheckIcon onClick={handleEditConfirm} className="add-confirm-icon" />
+        <CheckIcon onClick={handleEditConfirm} className="add-confirm-icon"/>
         </div>
       ) : (
         <div>
           <AddIcon onClick={writeToDatabase} className="add-confirm-icon" />
         </div>
       )}
-      <LogoutIcon onClick={handleSignOut} className="logout-icon" />
+        <LogoutIcon onClick={handleSignOut} className="logout-icon" />
     </div>
   );
 }
