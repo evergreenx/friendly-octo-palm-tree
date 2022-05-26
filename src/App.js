@@ -2,13 +2,16 @@ import "./App.css";
 import Welcome from "./components/Welcome";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
-import ReactGA from "react-ga";
 
-ReactGA.initialize("G-ZQ3LB5HZ6F");
+import ReactGA from "react-ga4";
+
+ReactGA.initialize([
+  {
+    trackingId: "G-ZQ3LB5HZ6F",
+  },
+]);
 
 function App() {
-  ReactGA.pageview(window.location.pathname + window.location.search);
-
   return (
     <div className="app">
       <Router>
