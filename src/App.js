@@ -11,15 +11,7 @@ import TagManager from "react-gtm-module";
 function App() {
   const [userId, setUserId] = useState(null);
 
-  const tagManagerArgs = {
-    gtmId: "GTM-NWD6X2X",
-    dataLayer: {
-      event: "login",
-      userId: userId,
-    },
-  };
-
-  TagManager.initialize(tagManagerArgs);
+ 
   try {
     setTimeout((_) => {
       const ga4react = new GA4React("G-ZQ3LB5HZ6F");
@@ -42,6 +34,17 @@ function App() {
 
     console.log(auth.currentUser);
   }, []);
+
+  
+   const tagManagerArgs = {
+     gtmId: "GTM-NWD6X2X",
+     dataLayer: {
+       event: "login",
+       userId: userId,
+     },
+   };
+
+   TagManager.initialize(tagManagerArgs);
   return (
     <div className="app">
       <Router>
