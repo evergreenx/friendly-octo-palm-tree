@@ -3,7 +3,7 @@ import "./App.css";
 import Welcome from "./components/Welcome";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
-// import GA4React from "ga-4-react";
+import GA4React from "ga-4-react";
 import { auth } from "./firebase";
 import { useEffect, useState } from "react";
 import TagManager from "react-gtm-module";

@@ -3,13 +3,22 @@ import "./App.css";
 import Welcome from "./components/Welcome";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
-// import GA4React from "ga-4-react";
+import GA4React from "ga-4-react";
 import { auth } from "./firebase";
 import { useEffect, useState } from "react";
 import TagManager from "react-gtm-module";
 
 function App() {
   const [userId, setUserId] = useState(null);
+
+  try {
+    setTimeout((_) => {
+      const ga4react = new GA4React("G-ZQ3LB5HZ6F");
+      ga4react.initialize().catch((err) => console.error(err));
+    }, 4000);
+  } catch (err) {
+    console.error(err);
+  }
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -35,8 +44,8 @@ function App() {
 
   TagManager.initialize(tagManagerArgs);
 
-  console.log(userId, "testt");
-
+  console.log(userId, 'testt')
+  
   return (
     <div className="app">
       <Router>
